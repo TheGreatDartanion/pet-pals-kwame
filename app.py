@@ -32,7 +32,7 @@ def send():
         pets_df = pd.DataFrame({
             'name': [name],
             'type': [pet_type],
-            'ag': [age]
+            'age': [age]
         })
 
         pets_df.to_sql('pets', con=conn, if_exists='append', index=False)
