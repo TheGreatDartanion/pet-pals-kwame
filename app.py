@@ -12,11 +12,11 @@ from sqlalchemy import func, create_engine
 
 app = Flask(__name__)
 
-engine = create_engine('sqlite:///db/pets.sqlite')
+engine = create_engine('sqlite:///db/pet.sqlite')
 
 # create route that renders index.html template
 @app.route("/")
-def home():    
+def home():
     return render_template("index.html")
 
 # Query the database and send the jsonified results
@@ -46,16 +46,16 @@ def send():
 @app.route("/api/pals-summary")
 def pals_summary():
     conn = engine.connect()
-    
+
     query = '''
-        SELECT 
+        SELECT
             type,
             COUNT(type) as count
         FROM
             pets
         GROUP BY
             type
-    ''' 
+    '''
 
     pets_df = pd.read_sql(query, con=conn)
 
@@ -68,13 +68,13 @@ def pals_summary():
 @app.route("/api/pals")
 def pals():
     conn = engine.connect()
-    
+
     query = '''
-        SELECT 
+        SELECT
             *
         FROM
             pets
-    ''' 
+    '''
 
     pets_df = pd.read_sql(query, con=conn)
 
