@@ -12,7 +12,7 @@ from sqlalchemy import func, create_engine
 
 app = Flask(__name__)
 
-engine = create_engine('sqlite:///db/pet.sqlite')
+engine = create_engine('sqlite:///db/pets.sqlite')
 
 # create route that renders index.html template
 @app.route("/")
@@ -32,7 +32,7 @@ def send():
         pets_df = pd.DataFrame({
             'name': [name],
             'type': [pet_type],
-            'age': [age]
+            'ag': [age]
         })
 
         pets_df.to_sql('pets', con=conn, if_exists='append', index=False)
