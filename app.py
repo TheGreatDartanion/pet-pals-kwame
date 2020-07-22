@@ -17,6 +17,8 @@ engine = create_engine('sqlite:///db/pets.sqlite')
 # create route that renders index.html template
 @app.route("/")
 def home():
+    print("- - - LOOK OVER HERE!!! - - -")
+    print("- - - CHRIS HANAFIN!!!!! YO!!!! - - -")
     return render_template("index.html")
 
 # Query the database and send the jsonified results
@@ -31,7 +33,7 @@ def send():
 
         pets_df = pd.DataFrame({
             'name': [name],
-            'type': [pet_type],
+            'typ': [pet_type],
             'age': [age]
         })
 
@@ -57,7 +59,7 @@ def pals_summary():
             type
     '''
 
-    pets_df = pd.read_sql(query, con=conn)
+    pets = pd.read_sql(query, con=conn)
 
     pets_json = pets_df.to_json(orient='records')
 
